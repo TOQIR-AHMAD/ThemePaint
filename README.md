@@ -1,32 +1,52 @@
 # ThemePaint
 
-A pack of 35 handcrafted color themes with a one-click picker in the sidebar.
+A pack of **100 modern color themes** organized into **20 categories**, with a
+one-click theme picker in the sidebar.
 
-Click the ThemePaint icon in the Activity Bar, pick a theme, and it's applied. The
-themes are normal VS Code color themes, so they show up in the regular theme picker
-too (Preferences: Color Theme), and if you uninstall ThemePaint your editor goes
-back to its default theme on its own — nothing is left behind.
+Click the ThemePaint icon in the Activity Bar, pick a theme, and it's applied.
+The themes are normal VS Code color themes, so they also show up in the regular
+theme picker (**Preferences: Color Theme**). If you uninstall ThemePaint, your
+editor goes back to its default theme on its own — nothing is left behind.
 
-The sidebar groups themes by category, shows a small color preview for each, and has
-a search box.
+The sidebar groups themes by category, shows a small color preview for each, and
+has a search box.
 
-## Themes
+## Categories
 
-- **Dark** — Cobalt Forge, Onyx One, Vampire, Neon, Frost, Retro Amber, Deep Ocean,
-  Tokyo Night, Palenight, Synthwave, Ayu Dark, Ayu Mirage, Material Ocean,
-  Catppuccin Mocha, Rosé Pine, Everforest, Kanagawa, Horizon, Oceanic Next, Panda,
-  Shades of Purple, GitHub Dark, Andromeda
-- **Light** — Clean Light, Solar Day, Catppuccin Latte, GitHub Light,
-  Material Lighter, Quiet Light
-- **High contrast** — High Contrast Forge
-- **Cybersecurity** — Matrix, Amber CRT, Red Team, Blue Team, Neon City
+20 categories, 5 themes each:
+
+- **Dark** — Andromeda, Onyx One, Carbon, Obsidian, Eclipse
+- **Light** — Clean, Paper, Daylight, Linen, Porcelain
+- **Ocean** — Deep Sea, Tidewater, Abyss, Lagoon, Marine
+- **Forest** — Everforest, Pine, Moss, Fern, Woodland
+- **Pastel** — Catppuccin, Rosé, Cotton, Sorbet, Macaron
+- **Neon** — Neon City, Cyberpunk, Vaporwave, Laser, Electric
+- **Synthwave** — Synthwave, Outrun, Miami, Retrowave, Sunset Drive
+- **Material** — Ocean, Palenight, Darker, Deep Ocean, Lighter
+- **Cybersecurity** — Matrix, Red Team, Blue Team, Amber CRT, Hacker
+- **Cosmic** — Nebula, Galaxy, Aurora, Cosmos, Stardust
+- **Coffee** — Espresso, Mocha, Latte, Cappuccino, Cacao
+- **Sunset** — Dawn, Dusk, Ember, Sunrise, Twilight
+- **Frost** — Arctic, Glacier, Nord, Snow, Frostbite
+- **Gruvbox** — Gruvbox Dark, Gruvbox Light, Retro, Vintage, Sepia
+- **Monochrome** — Mono Dark, Mono Light, Slate, Graphite, Ash
+- **Vibrant** — Candy, Tropical, Fiesta, Prism, Rainbow
+- **Midnight** — Midnight, Deep Space, Black Hole, Void, Ink
+- **GitHub** — Dark, Light, Dimmed, Dark HC, Colorblind
+- **Solarized** — Solarized Dark, Solarized Light, Muted, Sage, Sand
+- **Tokyo** — Tokyo Night, Tokyo Storm, Tokyo Day, Tokyo Moon, Kanagawa
+
+Every theme uses a varied, readable syntax palette — a distinct color for
+keywords, strings, functions, numbers, types, variables, properties, and
+operators.
 
 ## Using it
 
 - Click the **ThemePaint** icon in the Activity Bar (left edge) to open the picker.
 - Click any theme to apply it. The current one is checked.
-- **Reset to my previous theme** switches back to whatever theme you had before you
-  first used ThemePaint.
+- Use the search box to filter by name.
+- **Reset to my previous theme** switches back to whatever theme you had before
+  you first used ThemePaint.
 
 You can also run **ThemePaint: Open Theme Picker** from the Command Palette.
 
@@ -34,12 +54,14 @@ You can also run **ThemePaint: Open Theme Picker** from the Command Palette.
 
 ```bash
 npm install
+npm run themes   # regenerate the theme files from scripts/generate-themes.js
 npm run watch
 ```
 
-Press F5 to launch the Extension Development Host. Theme files live in `themes/`
-and are contributed in `package.json` under `contributes.themes`. The sidebar UI is
-a small webview view (`src/viewProvider.ts` + `media/`).
+Press F5 to launch the Extension Development Host. Themes are generated from
+compact palettes in `scripts/generate-themes.js` into `themes/` and contributed
+in `package.json` under `contributes.themes`. The sidebar UI is a small webview
+view (`src/viewProvider.ts` + `media/`).
 
 ## License
 

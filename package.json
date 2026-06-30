@@ -1,8 +1,8 @@
 {
   "name": "themepaint",
   "displayName": "ThemePaint",
-  "description": "A pack of 10 handcrafted color themes with a one-click theme picker in the sidebar.",
-  "version": "0.2.1",
+  "description": "A pack of 100 modern color themes in 20 categories, with a one-click theme picker in the sidebar.",
+  "version": "0.3.0",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",
@@ -57,179 +57,504 @@
     ],
     "themes": [
       {
-        "label": "Andromeda",
+        "label": "Dark: Andromeda",
         "uiTheme": "vs-dark",
-        "path": "./themes/andromeda.json"
+        "path": "./themes/dark-andromeda.json"
       },
       {
-        "label": "Ayu Dark",
+        "label": "Dark: Onyx One",
         "uiTheme": "vs-dark",
-        "path": "./themes/ayu-dark.json"
+        "path": "./themes/dark-onyx-one.json"
       },
       {
-        "label": "Ayu Mirage",
+        "label": "Dark: Carbon",
         "uiTheme": "vs-dark",
-        "path": "./themes/ayu-mirage.json"
+        "path": "./themes/dark-carbon.json"
       },
       {
-        "label": "Catppuccin Mocha",
+        "label": "Dark: Obsidian",
         "uiTheme": "vs-dark",
-        "path": "./themes/catppuccin-mocha.json"
+        "path": "./themes/dark-obsidian.json"
       },
       {
-        "label": "Cobalt Forge",
+        "label": "Dark: Eclipse",
         "uiTheme": "vs-dark",
-        "path": "./themes/cobalt-forge.json"
+        "path": "./themes/dark-eclipse.json"
       },
       {
-        "label": "Deep Ocean",
+        "label": "Light: Clean",
+        "uiTheme": "vs",
+        "path": "./themes/light-clean.json"
+      },
+      {
+        "label": "Light: Paper",
+        "uiTheme": "vs",
+        "path": "./themes/light-paper.json"
+      },
+      {
+        "label": "Light: Daylight",
+        "uiTheme": "vs",
+        "path": "./themes/light-daylight.json"
+      },
+      {
+        "label": "Light: Linen",
+        "uiTheme": "vs",
+        "path": "./themes/light-linen.json"
+      },
+      {
+        "label": "Light: Porcelain",
+        "uiTheme": "vs",
+        "path": "./themes/light-porcelain.json"
+      },
+      {
+        "label": "Ocean: Deep Sea",
         "uiTheme": "vs-dark",
-        "path": "./themes/deep-ocean.json"
+        "path": "./themes/ocean-deep-sea.json"
       },
       {
-        "label": "Everforest",
+        "label": "Ocean: Tidewater",
         "uiTheme": "vs-dark",
-        "path": "./themes/everforest.json"
+        "path": "./themes/ocean-tidewater.json"
       },
       {
-        "label": "Frost",
+        "label": "Ocean: Abyss",
         "uiTheme": "vs-dark",
-        "path": "./themes/frost.json"
+        "path": "./themes/ocean-abyss.json"
       },
       {
-        "label": "GitHub Dark",
+        "label": "Ocean: Lagoon",
         "uiTheme": "vs-dark",
-        "path": "./themes/github-dark.json"
+        "path": "./themes/ocean-lagoon.json"
       },
       {
-        "label": "High Contrast Forge",
-        "uiTheme": "hc-black",
-        "path": "./themes/high-contrast-forge.json"
-      },
-      {
-        "label": "Horizon",
+        "label": "Ocean: Marine",
         "uiTheme": "vs-dark",
-        "path": "./themes/horizon.json"
+        "path": "./themes/ocean-marine.json"
       },
       {
-        "label": "Kanagawa",
+        "label": "Forest: Everforest",
         "uiTheme": "vs-dark",
-        "path": "./themes/kanagawa.json"
+        "path": "./themes/forest-everforest.json"
       },
       {
-        "label": "Material Ocean",
+        "label": "Forest: Pine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/forest-pine.json"
+      },
+      {
+        "label": "Forest: Moss",
+        "uiTheme": "vs-dark",
+        "path": "./themes/forest-moss.json"
+      },
+      {
+        "label": "Forest: Fern",
+        "uiTheme": "vs-dark",
+        "path": "./themes/forest-fern.json"
+      },
+      {
+        "label": "Forest: Woodland",
+        "uiTheme": "vs-dark",
+        "path": "./themes/forest-woodland.json"
+      },
+      {
+        "label": "Pastel: Catppuccin",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel-catppuccin.json"
+      },
+      {
+        "label": "Pastel: Rosé",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel-rose.json"
+      },
+      {
+        "label": "Pastel: Cotton",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel-cotton.json"
+      },
+      {
+        "label": "Pastel: Sorbet",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel-sorbet.json"
+      },
+      {
+        "label": "Pastel: Macaron",
+        "uiTheme": "vs-dark",
+        "path": "./themes/pastel-macaron.json"
+      },
+      {
+        "label": "Neon: Neon City",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon-neon-city.json"
+      },
+      {
+        "label": "Neon: Cyberpunk",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon-cyberpunk.json"
+      },
+      {
+        "label": "Neon: Vaporwave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon-vaporwave.json"
+      },
+      {
+        "label": "Neon: Laser",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon-laser.json"
+      },
+      {
+        "label": "Neon: Electric",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon-electric.json"
+      },
+      {
+        "label": "Synthwave: Synthwave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave-synthwave.json"
+      },
+      {
+        "label": "Synthwave: Outrun",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave-outrun.json"
+      },
+      {
+        "label": "Synthwave: Miami",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave-miami.json"
+      },
+      {
+        "label": "Synthwave: Retrowave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave-retrowave.json"
+      },
+      {
+        "label": "Synthwave: Sunset Drive",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave-sunset-drive.json"
+      },
+      {
+        "label": "Material: Ocean",
         "uiTheme": "vs-dark",
         "path": "./themes/material-ocean.json"
       },
       {
-        "label": "Neon",
+        "label": "Material: Palenight",
         "uiTheme": "vs-dark",
-        "path": "./themes/neon.json"
+        "path": "./themes/material-palenight.json"
       },
       {
-        "label": "Oceanic Next",
+        "label": "Material: Darker",
         "uiTheme": "vs-dark",
-        "path": "./themes/oceanic-next.json"
+        "path": "./themes/material-darker.json"
       },
       {
-        "label": "Onyx One",
+        "label": "Material: Deep Ocean",
         "uiTheme": "vs-dark",
-        "path": "./themes/onyx-one.json"
+        "path": "./themes/material-deep-ocean.json"
       },
       {
-        "label": "Palenight",
-        "uiTheme": "vs-dark",
-        "path": "./themes/palenight.json"
-      },
-      {
-        "label": "Panda",
-        "uiTheme": "vs-dark",
-        "path": "./themes/panda.json"
-      },
-      {
-        "label": "Retro Amber",
-        "uiTheme": "vs-dark",
-        "path": "./themes/retro-amber.json"
-      },
-      {
-        "label": "Rosé Pine",
-        "uiTheme": "vs-dark",
-        "path": "./themes/rose-pine.json"
-      },
-      {
-        "label": "Shades of Purple",
-        "uiTheme": "vs-dark",
-        "path": "./themes/shades-of-purple.json"
-      },
-      {
-        "label": "Synthwave",
-        "uiTheme": "vs-dark",
-        "path": "./themes/synthwave.json"
-      },
-      {
-        "label": "Tokyo Night",
-        "uiTheme": "vs-dark",
-        "path": "./themes/tokyo-night.json"
-      },
-      {
-        "label": "Vampire",
-        "uiTheme": "vs-dark",
-        "path": "./themes/vampire.json"
-      },
-      {
-        "label": "Catppuccin Latte",
-        "uiTheme": "vs",
-        "path": "./themes/catppuccin-latte.json"
-      },
-      {
-        "label": "Clean Light",
-        "uiTheme": "vs",
-        "path": "./themes/clean-light.json"
-      },
-      {
-        "label": "GitHub Light",
-        "uiTheme": "vs",
-        "path": "./themes/github-light.json"
-      },
-      {
-        "label": "Material Lighter",
+        "label": "Material: Lighter",
         "uiTheme": "vs",
         "path": "./themes/material-lighter.json"
       },
       {
-        "label": "Quiet Light",
+        "label": "Cybersecurity: Matrix",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cybersecurity-matrix.json"
+      },
+      {
+        "label": "Cybersecurity: Red Team",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cybersecurity-red-team.json"
+      },
+      {
+        "label": "Cybersecurity: Blue Team",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cybersecurity-blue-team.json"
+      },
+      {
+        "label": "Cybersecurity: Amber CRT",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cybersecurity-amber-crt.json"
+      },
+      {
+        "label": "Cybersecurity: Hacker",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cybersecurity-hacker.json"
+      },
+      {
+        "label": "Cosmic: Nebula",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cosmic-nebula.json"
+      },
+      {
+        "label": "Cosmic: Galaxy",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cosmic-galaxy.json"
+      },
+      {
+        "label": "Cosmic: Aurora",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cosmic-aurora.json"
+      },
+      {
+        "label": "Cosmic: Cosmos",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cosmic-cosmos.json"
+      },
+      {
+        "label": "Cosmic: Stardust",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cosmic-stardust.json"
+      },
+      {
+        "label": "Coffee: Espresso",
+        "uiTheme": "vs-dark",
+        "path": "./themes/coffee-espresso.json"
+      },
+      {
+        "label": "Coffee: Mocha",
+        "uiTheme": "vs-dark",
+        "path": "./themes/coffee-mocha.json"
+      },
+      {
+        "label": "Coffee: Latte",
         "uiTheme": "vs",
-        "path": "./themes/quiet-light.json"
+        "path": "./themes/coffee-latte.json"
       },
       {
-        "label": "Solar Day",
+        "label": "Coffee: Cappuccino",
+        "uiTheme": "vs-dark",
+        "path": "./themes/coffee-cappuccino.json"
+      },
+      {
+        "label": "Coffee: Cacao",
+        "uiTheme": "vs-dark",
+        "path": "./themes/coffee-cacao.json"
+      },
+      {
+        "label": "Sunset: Dawn",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sunset-dawn.json"
+      },
+      {
+        "label": "Sunset: Dusk",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sunset-dusk.json"
+      },
+      {
+        "label": "Sunset: Ember",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sunset-ember.json"
+      },
+      {
+        "label": "Sunset: Sunrise",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sunset-sunrise.json"
+      },
+      {
+        "label": "Sunset: Twilight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sunset-twilight.json"
+      },
+      {
+        "label": "Frost: Arctic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/frost-arctic.json"
+      },
+      {
+        "label": "Frost: Glacier",
+        "uiTheme": "vs-dark",
+        "path": "./themes/frost-glacier.json"
+      },
+      {
+        "label": "Frost: Nord",
+        "uiTheme": "vs-dark",
+        "path": "./themes/frost-nord.json"
+      },
+      {
+        "label": "Frost: Snow",
         "uiTheme": "vs",
-        "path": "./themes/solar-day.json"
+        "path": "./themes/frost-snow.json"
       },
       {
-        "label": "Cyber: Amber CRT",
+        "label": "Frost: Frostbite",
         "uiTheme": "vs-dark",
-        "path": "./themes/cyber-amber-crt.json"
+        "path": "./themes/frost-frostbite.json"
       },
       {
-        "label": "Cyber: Blue Team",
+        "label": "Gruvbox: Gruvbox Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/cyber-blue-team.json"
+        "path": "./themes/gruvbox-gruvbox-dark.json"
       },
       {
-        "label": "Cyber: Matrix",
-        "uiTheme": "vs-dark",
-        "path": "./themes/cyber-matrix.json"
+        "label": "Gruvbox: Gruvbox Light",
+        "uiTheme": "vs",
+        "path": "./themes/gruvbox-gruvbox-light.json"
       },
       {
-        "label": "Cyber: Neon City",
+        "label": "Gruvbox: Retro",
         "uiTheme": "vs-dark",
-        "path": "./themes/cyber-neon.json"
+        "path": "./themes/gruvbox-retro.json"
       },
       {
-        "label": "Cyber: Red Team",
+        "label": "Gruvbox: Vintage",
         "uiTheme": "vs-dark",
-        "path": "./themes/cyber-red-team.json"
+        "path": "./themes/gruvbox-vintage.json"
+      },
+      {
+        "label": "Gruvbox: Sepia",
+        "uiTheme": "vs",
+        "path": "./themes/gruvbox-sepia.json"
+      },
+      {
+        "label": "Monochrome: Mono Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/monochrome-mono-dark.json"
+      },
+      {
+        "label": "Monochrome: Mono Light",
+        "uiTheme": "vs",
+        "path": "./themes/monochrome-mono-light.json"
+      },
+      {
+        "label": "Monochrome: Slate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/monochrome-slate.json"
+      },
+      {
+        "label": "Monochrome: Graphite",
+        "uiTheme": "vs-dark",
+        "path": "./themes/monochrome-graphite.json"
+      },
+      {
+        "label": "Monochrome: Ash",
+        "uiTheme": "vs-dark",
+        "path": "./themes/monochrome-ash.json"
+      },
+      {
+        "label": "Vibrant: Candy",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vibrant-candy.json"
+      },
+      {
+        "label": "Vibrant: Tropical",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vibrant-tropical.json"
+      },
+      {
+        "label": "Vibrant: Fiesta",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vibrant-fiesta.json"
+      },
+      {
+        "label": "Vibrant: Prism",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vibrant-prism.json"
+      },
+      {
+        "label": "Vibrant: Rainbow",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vibrant-rainbow.json"
+      },
+      {
+        "label": "Midnight: Midnight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/midnight-midnight.json"
+      },
+      {
+        "label": "Midnight: Deep Space",
+        "uiTheme": "vs-dark",
+        "path": "./themes/midnight-deep-space.json"
+      },
+      {
+        "label": "Midnight: Black Hole",
+        "uiTheme": "vs-dark",
+        "path": "./themes/midnight-black-hole.json"
+      },
+      {
+        "label": "Midnight: Void",
+        "uiTheme": "vs-dark",
+        "path": "./themes/midnight-void.json"
+      },
+      {
+        "label": "Midnight: Ink",
+        "uiTheme": "vs-dark",
+        "path": "./themes/midnight-ink.json"
+      },
+      {
+        "label": "GitHub: GitHub Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/github-github-dark.json"
+      },
+      {
+        "label": "GitHub: GitHub Light",
+        "uiTheme": "vs",
+        "path": "./themes/github-github-light.json"
+      },
+      {
+        "label": "GitHub: GitHub Dimmed",
+        "uiTheme": "vs-dark",
+        "path": "./themes/github-github-dimmed.json"
+      },
+      {
+        "label": "GitHub: GitHub Dark HC",
+        "uiTheme": "vs-dark",
+        "path": "./themes/github-github-dark-hc.json"
+      },
+      {
+        "label": "GitHub: GitHub Colorblind",
+        "uiTheme": "vs-dark",
+        "path": "./themes/github-github-colorblind.json"
+      },
+      {
+        "label": "Solarized: Solarized Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/solarized-solarized-dark.json"
+      },
+      {
+        "label": "Solarized: Solarized Light",
+        "uiTheme": "vs",
+        "path": "./themes/solarized-solarized-light.json"
+      },
+      {
+        "label": "Solarized: Muted",
+        "uiTheme": "vs-dark",
+        "path": "./themes/solarized-muted.json"
+      },
+      {
+        "label": "Solarized: Sage",
+        "uiTheme": "vs-dark",
+        "path": "./themes/solarized-sage.json"
+      },
+      {
+        "label": "Solarized: Sand",
+        "uiTheme": "vs",
+        "path": "./themes/solarized-sand.json"
+      },
+      {
+        "label": "Tokyo: Tokyo Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-tokyo-night.json"
+      },
+      {
+        "label": "Tokyo: Tokyo Storm",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-tokyo-storm.json"
+      },
+      {
+        "label": "Tokyo: Tokyo Day",
+        "uiTheme": "vs",
+        "path": "./themes/tokyo-tokyo-day.json"
+      },
+      {
+        "label": "Tokyo: Tokyo Moon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-tokyo-moon.json"
+      },
+      {
+        "label": "Tokyo: Kanagawa",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-kanagawa.json"
       }
     ]
   },
@@ -238,6 +563,7 @@
     "build": "node esbuild.js --production",
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
+    "themes": "node scripts/generate-themes.js",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

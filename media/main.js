@@ -7,7 +7,15 @@
   let current = undefined;
   let query = "";
 
-  const GROUP_ORDER = ["Dark", "Light", "High Contrast", "Cybersecurity"];
+  // Group order is derived from the order themes arrive in (which the generator
+  // emits category-by-category), so adding a category needs no change here.
+  function groupOrder() {
+    const seen = [];
+    themes.forEach((t) => {
+      if (!seen.includes(t.category)) seen.push(t.category);
+    });
+    return seen;
+  }
 
   window.addEventListener("load", () => vscode.postMessage({ type: "ready" }));
 
@@ -76,7 +84,7 @@
 
     const filtered = themes.filter((t) => !query || t.label.toLowerCase().includes(query));
 
-    GROUP_ORDER.forEach((group) => {
+    groupOrder().forEach((group) => {
       const items = filtered.filter((t) => t.category === group);
       if (!items.length) return;
 
@@ -122,7 +130,7 @@
 
     const name = document.createElement("span");
     name.className = "name";
-    name.textContent = t.label.replace(/^Cyber:\s*/, "");
+    name.textContent = t.label.replace(/^[^:]+:\s*/, "");
 
     const check = document.createElement("span");
     check.className = "check";

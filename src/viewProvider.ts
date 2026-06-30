@@ -185,8 +185,11 @@ export class ThemePaintViewProvider implements vscode.WebviewViewProvider {
 }
 
 function categoryOf(t: ThemeContribution): string {
-  if (/^Cyber:/.test(t.label)) {
-    return "Cybersecurity";
+  // Labels follow a "Category: Name" convention (see scripts/generate-themes.js);
+  // the prefix before the first colon is the sidebar group.
+  const i = t.label.indexOf(":");
+  if (i > 0) {
+    return t.label.slice(0, i).trim();
   }
   if (t.uiTheme === "vs") {
     return "Light";
