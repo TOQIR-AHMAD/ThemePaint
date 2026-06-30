@@ -7,6 +7,23 @@ so the editor updates as you go.
 Comes with three starter themes you can use directly or fork as a starting point.
 Save your work, export it as an installable theme, and revert if you don't like it.
 
+## Features
+
+- **Live preview** — every change is written to your settings and applied instantly, with no reload.
+- **Full UI coverage** — around 80 of the most-used workbench colors, grouped and searchable, plus a field to set any other color ID by name.
+- **Syntax editor** — foreground and font style (bold / italic / underline) for comments, strings, numbers, keywords, functions, variables, types, operators and classes.
+- **Custom scopes** — add raw TextMate `{ scope, foreground, fontStyle }` rules for fine-grained control.
+- **Semantic tokens** — edit `editor.semanticTokenColorCustomizations` for common semantic token types.
+- **Starter themes** — a Cobalt-style dark, a clean light, and a high-contrast theme; use them as-is or fork to start your own.
+- **Theme manager** — save, load, rename, duplicate and delete your themes.
+- **One-click export** — generate an installable theme package and `.vsix`, ready to share or publish.
+- **Live JSON view** — see the theme file exactly as it will be exported, with copy to clipboard.
+- **Contrast checker** — WCAG AA ratios for key foreground/background pairs, with clear pass/fail flags.
+- **Click-to-target** — identify the semantic token under your cursor, or open the built-in scope inspector.
+- **Safe by default** — your existing customizations are snapshotted on open and restored exactly on revert.
+- **User or Workspace scope** — choose where your customizations are applied.
+- **8-digit hex** — full `#RRGGBBAA` alpha support throughout.
+
 ## Running it
 
 ```bash
