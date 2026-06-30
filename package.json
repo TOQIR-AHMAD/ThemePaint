@@ -1,8 +1,8 @@
 {
   "name": "themepaint",
   "displayName": "ThemePaint",
-  "description": "Build VS Code color themes by picking colors, with live preview. Covers the workbench UI and code syntax.",
-  "version": "0.0.9",
+  "description": "A pack of 10 handcrafted color themes with a one-click theme picker in the sidebar.",
+  "version": "0.1.0",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",
@@ -44,7 +44,7 @@
       "themePaint": [
         {
           "id": "themePaint.view",
-          "name": "Theme Creator",
+          "name": "Themes",
           "type": "webview"
         }
       ]
@@ -52,12 +52,20 @@
     "commands": [
       {
         "command": "themePaint.open",
-        "title": "ThemePaint: Open Theme Creator"
-      },
-      {
-        "command": "themePaint.openPanel",
-        "title": "ThemePaint: Open in Editor Panel"
+        "title": "ThemePaint: Open Theme Picker"
       }
+    ],
+    "themes": [
+      { "label": "Cobalt Forge", "uiTheme": "vs-dark", "path": "./themes/cobalt-forge.json" },
+      { "label": "Onyx One", "uiTheme": "vs-dark", "path": "./themes/onyx-one.json" },
+      { "label": "Vampire", "uiTheme": "vs-dark", "path": "./themes/vampire.json" },
+      { "label": "Neon", "uiTheme": "vs-dark", "path": "./themes/neon.json" },
+      { "label": "Frost", "uiTheme": "vs-dark", "path": "./themes/frost.json" },
+      { "label": "Retro Amber", "uiTheme": "vs-dark", "path": "./themes/retro-amber.json" },
+      { "label": "Deep Ocean", "uiTheme": "vs-dark", "path": "./themes/deep-ocean.json" },
+      { "label": "Clean Light", "uiTheme": "vs", "path": "./themes/clean-light.json" },
+      { "label": "Solar Day", "uiTheme": "vs", "path": "./themes/solar-day.json" },
+      { "label": "High Contrast Forge", "uiTheme": "hc-black", "path": "./themes/high-contrast-forge.json" }
     ]
   },
   "scripts": {

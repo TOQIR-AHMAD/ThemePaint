@@ -6,434 +6,75 @@ body {
   font-family: var(--vscode-font-family);
   font-size: var(--vscode-font-size);
   color: var(--vscode-foreground);
-  background: var(--vscode-editor-background);
   margin: 0;
-  padding: 0;
+  padding: 10px 12px 24px;
 }
 
-#tf-app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.tf-placeholder,
-.tf-muted {
+.intro {
+  margin: 4px 0 12px;
   opacity: 0.7;
 }
 
-code,
-.tf-row-id {
-  font-family: var(--vscode-editor-font-family, monospace);
-  font-size: 0.85em;
-  opacity: 0.7;
-}
-
-/* ---- header (both modes) ---- */
-.tf-head {
+.list {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
-  background: var(--vscode-sideBar-background, var(--vscode-editor-background));
-}
-.tf-head-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-}
-.tf-head .tf-name {
-  flex: 1;
-  min-width: 120px;
-  font-size: 1.05em;
-}
-.tf-mode {
-  margin-left: auto;
-}
-.tf-hint {
-  font-size: 0.82em;
-  opacity: 0.6;
 }
 
-/* ---- simple mode ---- */
-.tf-simple {
-  flex: 1;
-  overflow: auto;
-  padding: 12px 14px 60px;
-}
-.tf-starter-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  margin-bottom: 18px;
-}
-.tf-starter {
-  padding: 8px 6px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tf-essentials {
-  margin-bottom: 16px;
-}
-.tf-tip {
-  margin: 4px 0 8px;
-}
-.tf-foot {
-  margin-top: 18px;
-  padding-top: 12px;
-  border-top: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.25));
-  font-size: 0.9em;
-}
-
-/* ---- toolbar ---- */
-.tf-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 8px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
-  background: var(--vscode-sideBar-background, var(--vscode-editor-background));
-}
-.tf-title {
-  font-size: 1.1em;
-  margin-right: 8px;
-  align-self: center;
-}
-.tf-spacer {
-  flex: 1;
-}
-.tf-field {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.tf-field-label {
-  font-size: 0.75em;
-  opacity: 0.7;
-}
-.tf-name {
-  min-width: 150px;
-}
-
-/* ---- inputs / buttons ---- */
-.tf-input,
-.tf-select {
-  background: var(--vscode-input-background);
-  color: var(--vscode-input-foreground);
-  border: 1px solid var(--vscode-input-border, var(--vscode-dropdown-border, transparent));
-  border-radius: 3px;
-  padding: 3px 6px;
-  font-family: inherit;
-  font-size: inherit;
-}
-.tf-input:focus,
-.tf-select:focus {
-  outline: 1px solid var(--vscode-focusBorder);
-}
-.tf-btn {
-  background: var(--vscode-button-secondaryBackground, rgba(128, 128, 128, 0.2));
-  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
-  border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-}
-.tf-btn:hover {
-  background: var(--vscode-button-secondaryHoverBackground, rgba(128, 128, 128, 0.35));
-}
-.tf-btn.primary {
-  background: var(--vscode-button-background);
-  color: var(--vscode-button-foreground);
-}
-.tf-btn.primary:hover {
-  background: var(--vscode-button-hoverBackground);
-}
-.tf-btn.danger {
-  background: var(--vscode-inputValidation-errorBackground, #5a1d1d);
-  color: var(--vscode-foreground);
-}
-.tf-btn.tf-icon {
-  padding: 2px 6px;
-  flex: 0 0 auto;
-  opacity: 0.7;
-}
-.tf-btn.tf-icon:hover {
-  opacity: 1;
-}
-
-/* ---- contrast bar ---- */
-.tf-contrast {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
-  font-size: 0.85em;
-  overflow-x: auto;
-}
-.tf-contrast-title,
-.tf-chip {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-.tf-contrast-title {
-  opacity: 0.7;
-}
-.tf-chip {
-  border-radius: 10px;
-  padding: 1px 8px;
-  font-size: 0.85em;
-  border: 1px solid transparent;
-}
-.tf-chip.pass {
-  background: rgba(46, 160, 67, 0.2);
-  border-color: rgba(46, 160, 67, 0.5);
-}
-.tf-chip.warn {
-  background: rgba(210, 153, 34, 0.2);
-  border-color: rgba(210, 153, 34, 0.5);
-}
-.tf-chip.fail {
-  background: rgba(218, 54, 51, 0.2);
-  border-color: rgba(218, 54, 51, 0.6);
-}
-
-/* ---- tabs ---- */
-.tf-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px;
-  padding: 0 10px;
-  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
-}
-.tf-tab {
-  background: transparent;
-  color: var(--vscode-foreground);
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 8px 12px;
-  cursor: pointer;
-  opacity: 0.7;
-  font-family: inherit;
-  font-size: inherit;
-}
-.tf-tab:hover {
-  opacity: 1;
-}
-.tf-tab.active {
-  opacity: 1;
-  border-bottom-color: var(--vscode-focusBorder, var(--vscode-button-background));
-}
-
-/* ---- tab body ---- */
-.tf-tab-body {
-  flex: 1;
-  overflow: auto;
-  padding: 12px 14px 60px;
-}
-.tf-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.tf-search {
-  flex: 1;
-  min-width: 180px;
-}
-.tf-checkline {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-
-/* ---- groups & rows ---- */
-.tf-group {
-  margin-bottom: 18px;
-}
-.tf-group-title {
-  margin: 0 0 6px;
-  font-size: 0.95em;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  opacity: 0.8;
-  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.25));
-  padding-bottom: 3px;
-}
-.tf-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 4px 6px;
-  border-radius: 4px;
-}
-.tf-row:hover {
-  background: var(--vscode-list-hoverBackground, rgba(128, 128, 128, 0.08));
-}
-.tf-row-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.tf-row-label {
-  line-height: 1.25;
-}
-.tf-swatch {
-  width: 30px;
-  height: 26px;
-  flex: 0 0 auto;
-  padding: 0;
-  border: 1px solid var(--vscode-input-border, rgba(128, 128, 128, 0.4));
-  border-radius: 4px;
-  background: transparent;
-  cursor: pointer;
-}
-.tf-hex {
-  width: 82px;
-  flex: 0 0 auto;
-  font-family: var(--vscode-editor-font-family, monospace);
-}
-
-/* ---- font-style toggles ---- */
-.tf-styles {
-  display: flex;
-  gap: 2px;
-}
-.tf-style {
-  width: 26px;
-  height: 24px;
-  border: 1px solid var(--vscode-input-border, rgba(128, 128, 128, 0.4));
-  background: transparent;
-  color: var(--vscode-foreground);
-  border-radius: 3px;
-  cursor: pointer;
-  opacity: 0.6;
-}
-.tf-style.on {
-  opacity: 1;
-  background: var(--vscode-button-background);
-  color: var(--vscode-button-foreground);
-  border-color: var(--vscode-button-background);
-}
-
-/* ---- advanced rules ---- */
-.tf-rule {
+.theme {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 3px 6px;
-}
-.tf-mini-swatch {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  border: 1px solid rgba(128, 128, 128, 0.4);
-  display: inline-block;
-}
-.tf-addrow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-.tf-addrow .tf-input {
-  flex: 1;
-  min-width: 120px;
-}
-
-/* ---- themes ---- */
-.tf-themes {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.tf-theme-card {
+  width: 100%;
+  text-align: left;
+  padding: 9px 10px;
   border: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
   border-radius: 5px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  background: var(--vscode-list-hoverBackground, transparent);
+  color: var(--vscode-foreground);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
-.tf-theme-name {
+
+.theme:hover {
+  background: var(--vscode-list-hoverBackground, rgba(128, 128, 128, 0.12));
+  border-color: var(--vscode-focusBorder, rgba(128, 128, 128, 0.5));
+}
+
+.theme.active {
+  border-color: var(--vscode-focusBorder, var(--vscode-button-background));
+  background: var(--vscode-list-activeSelectionBackground, rgba(128, 128, 128, 0.2));
+}
+
+.theme .name {
+  flex: 1;
   font-weight: 600;
 }
-.tf-theme-actions {
-  display: flex;
-  gap: 6px;
+
+.theme .kind {
+  font-size: 0.8em;
+  opacity: 0.6;
 }
 
-/* ---- json + export ---- */
-.tf-json {
-  background: var(--vscode-textCodeBlock-background, rgba(128, 128, 128, 0.1));
-  border: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
-  border-radius: 5px;
-  padding: 10px;
-  overflow: auto;
-  font-family: var(--vscode-editor-font-family, monospace);
-  font-size: 0.85em;
-  white-space: pre;
-}
-.tf-export-result {
-  border: 1px solid var(--vscode-focusBorder, rgba(128, 128, 128, 0.5));
-  border-radius: 5px;
-  padding: 4px 12px 12px;
-  margin-bottom: 14px;
-}
-.tf-target-result {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
+.theme .check {
+  color: var(--vscode-focusBorder, var(--vscode-button-background));
+  font-weight: 700;
 }
 
-/* ---- toast ---- */
-.tf-toast-host {
-  position: fixed;
-  bottom: 14px;
-  right: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  z-index: 100;
+.reset {
+  margin-top: 16px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  background: var(--vscode-button-secondaryBackground, rgba(128, 128, 128, 0.2));
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
-.tf-toast {
-  background: var(--vscode-notifications-background, var(--vscode-editor-background));
-  color: var(--vscode-notifications-foreground, var(--vscode-foreground));
-  border: 1px solid var(--vscode-notifications-border, rgba(128, 128, 128, 0.4));
-  border-left-width: 3px;
-  border-radius: 4px;
-  padding: 8px 12px;
-  max-width: 360px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.25s, transform 0.25s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.tf-toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-.tf-toast.error {
-  border-left-color: var(--vscode-inputValidation-errorBorder, #da3633);
-}
-.tf-toast.warn {
-  border-left-color: var(--vscode-inputValidation-warningBorder, #d29922);
-}
-.tf-toast.info {
-  border-left-color: var(--vscode-focusBorder, #2ea043);
+
+.reset:hover {
+  background: var(--vscode-button-secondaryHoverBackground, rgba(128, 128, 128, 0.35));
 }
