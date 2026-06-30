@@ -5,6 +5,11 @@
   "version": "0.0.1",
   "publisher": "ToqirAhmad",
   "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#171326",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/TOQIR-AHMAD/ThemePaint.git"
