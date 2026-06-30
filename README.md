@@ -31,8 +31,11 @@ npm install
 npm run watch
 ```
 
-Press F5 to launch the Extension Development Host, then run **ThemePaint: Open Theme
-Creator** from the Command Palette.
+Press F5 to launch the Extension Development Host. Once installed, click the
+**ThemePaint** icon in the Activity Bar (the left edge) to open it in the sidebar —
+the whole editor lives there. You can also run **ThemePaint: Open Theme Creator**
+from the Command Palette, or **ThemePaint: Open in Editor Panel** for a full-width
+layout.
 
 A quick tour:
 

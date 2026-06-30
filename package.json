@@ -2,7 +2,7 @@
   "name": "themepaint",
   "displayName": "ThemePaint",
   "description": "Build VS Code color themes by picking colors, with live preview. Covers the workbench UI and code syntax.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",
@@ -31,10 +31,32 @@
   "main": "./dist/extension.js",
   "activationEvents": [],
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "themePaint",
+          "title": "ThemePaint",
+          "icon": "media/activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "themePaint": [
+        {
+          "id": "themePaint.view",
+          "name": "Theme Creator",
+          "type": "webview"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "themePaint.open",
         "title": "ThemePaint: Open Theme Creator"
+      },
+      {
+        "command": "themePaint.openPanel",
+        "title": "ThemePaint: Open in Editor Panel"
       }
     ]
   },
