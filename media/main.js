@@ -437,6 +437,7 @@
     const cur = data.theme.colors[id] || "";
     const row = el("div", "tf-row");
     row.dataset.search = (label + " " + id).toLowerCase();
+    row.title = id; // full color ID on hover (keeps rows uncluttered)
 
     const swatch = el("input", "tf-swatch");
     swatch.type = "color";
@@ -451,10 +452,7 @@
     const main = el("div", "tf-row-main");
     const lab = el("span", "tf-row-label");
     lab.textContent = label;
-    const code = el("code", "tf-row-id");
-    code.textContent = id;
     main.appendChild(lab);
-    main.appendChild(code);
 
     const hex = inputText(cur, "default");
     hex.classList.add("tf-hex");
@@ -664,10 +662,8 @@
     const main = el("div", "tf-row-main");
     const lab = el("span", "tf-row-label");
     lab.textContent = t.label;
-    const code = el("code", "tf-row-id");
-    code.textContent = t.id;
     main.appendChild(lab);
-    main.appendChild(code);
+    row.title = t.id;
 
     const hex = inputText(cur.foreground || "", "default");
     hex.classList.add("tf-hex");

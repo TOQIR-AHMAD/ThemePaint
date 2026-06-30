@@ -157,6 +157,7 @@ code,
 }
 .tf-btn.tf-icon {
   padding: 2px 6px;
+  flex: 0 0 auto;
   opacity: 0.7;
 }
 .tf-btn.tf-icon:hover {
@@ -166,12 +167,18 @@ code,
 /* ---- contrast bar ---- */
 .tf-contrast {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
   border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
   font-size: 0.85em;
+  overflow-x: auto;
+}
+.tf-contrast-title,
+.tf-chip {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 .tf-contrast-title {
   opacity: 0.7;
@@ -276,13 +283,12 @@ code,
   min-width: 0;
 }
 .tf-row-label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.25;
 }
 .tf-swatch {
   width: 30px;
   height: 26px;
+  flex: 0 0 auto;
   padding: 0;
   border: 1px solid var(--vscode-input-border, rgba(128, 128, 128, 0.4));
   border-radius: 4px;
@@ -290,7 +296,8 @@ code,
   cursor: pointer;
 }
 .tf-hex {
-  width: 96px;
+  width: 82px;
+  flex: 0 0 auto;
   font-family: var(--vscode-editor-font-family, monospace);
 }
 
