@@ -244,6 +244,10 @@ export class ThemePaintController {
           await this.doRevert();
           break;
 
+        case "resetAll":
+          await this.doResetAll();
+          break;
+
         case "saveTheme":
           await this.doSave();
           break;
@@ -352,6 +356,14 @@ export class ThemePaintController {
     await this.writer.revert();
     this.theme = emptyTheme(this.theme.name, this.theme.type);
     this.seedFromSnapshot();
+    this.sendLoadTheme();
+  }
+
+  /** Clear every customization so the editor falls back to its base theme. */
+  private async doResetAll() {
+    this.theme = emptyTheme(this.theme.name, this.theme.type);
+    this.currentSavedId = undefined;
+    await this.writer.applyTheme(this.theme);
     this.sendLoadTheme();
   }
 

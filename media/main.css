@@ -59,10 +59,18 @@ code,
   overflow: auto;
   padding: 12px 14px 60px;
 }
-.tf-starter-select {
-  width: 100%;
+.tf-starter-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
   margin-bottom: 18px;
-  padding: 6px 8px;
+}
+.tf-starter {
+  padding: 8px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tf-essentials {
   margin-bottom: 16px;

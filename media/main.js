@@ -117,7 +117,12 @@
 
     const actions = el("div", "tf-head-row");
     actions.appendChild(button("Save", () => send({ type: "saveTheme" }), "primary"));
-    actions.appendChild(button("Revert", () => send({ type: "revert" }), "danger"));
+    const reset = button("Reset", () => send({ type: "resetAll" }));
+    reset.title = "Clear all colors back to the theme's defaults";
+    actions.appendChild(reset);
+    const revert = button("Revert", () => send({ type: "revert" }), "danger");
+    revert.title = "Undo your changes and restore what you had before opening ThemePaint";
+    actions.appendChild(revert);
     if (mode === "advanced") {
       actions.appendChild(button("Export", () => send({ type: "export" })));
     }
@@ -129,22 +134,15 @@
   function buildSimpleBody() {
     const wrap = el("div", "tf-simple");
 
-    // Start from a theme — a single dropdown that applies on pick.
-    const starter = el("select", "tf-select tf-starter-select");
-    const ph = el("option");
-    ph.value = "";
-    ph.textContent = "Start from a theme…";
-    starter.appendChild(ph);
+    // Start from a theme — one button per starter.
+    wrap.appendChild(sectionTitle("Start from a theme"));
+    const cards = el("div", "tf-starter-cards");
     (data.starters || []).forEach((s) => {
-      const o = el("option");
-      o.value = s.id;
-      o.textContent = s.name;
-      starter.appendChild(o);
+      const card = button(s.name, () => send({ type: "loadStarter", id: s.id, fork: false }));
+      card.classList.add("tf-starter");
+      cards.appendChild(card);
     });
-    starter.addEventListener("change", () => {
-      if (starter.value) send({ type: "loadStarter", id: starter.value, fork: false });
-    });
-    wrap.appendChild(starter);
+    wrap.appendChild(cards);
 
     // Colors
     wrap.appendChild(sectionTitle("Colors"));
