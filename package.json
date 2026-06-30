@@ -2,7 +2,7 @@
   "name": "themepaint",
   "displayName": "ThemePaint",
   "description": "Build VS Code color themes by picking colors, with live preview. Covers the workbench UI and code syntax.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",

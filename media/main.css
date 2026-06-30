@@ -29,6 +29,61 @@ code,
   opacity: 0.7;
 }
 
+/* ---- header (both modes) ---- */
+.tf-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.3));
+  background: var(--vscode-sideBar-background, var(--vscode-editor-background));
+}
+.tf-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.tf-head .tf-name {
+  flex: 1;
+  min-width: 120px;
+  font-size: 1.05em;
+}
+.tf-mode {
+  margin-left: auto;
+}
+
+/* ---- simple mode ---- */
+.tf-simple {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 14px 60px;
+}
+.tf-starter-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tf-starter {
+  flex: 1;
+  min-width: 90px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.tf-essentials {
+  margin-bottom: 16px;
+}
+.tf-tip {
+  margin: 4px 0 8px;
+}
+.tf-foot {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--vscode-panel-border, rgba(128, 128, 128, 0.25));
+  font-size: 0.9em;
+}
+
 /* ---- toolbar ---- */
 .tf-toolbar {
   display: flex;

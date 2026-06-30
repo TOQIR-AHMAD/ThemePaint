@@ -1,13 +1,15 @@
-// ThemePaint webview — renders the editor UI and drives the live-preview loop.
-// The extension host is the only writer of settings; we send intent messages.
+// ThemePaint webview. Two modes: a Simple view (the default — a few friendly
+// controls) and an Advanced view (the full tabbed editor). The host is the only
+// writer of settings; we send intent messages.
 (function () {
   const vscode = acquireVsCodeApi();
 
   /** @type {any} */
-  let data = null; // { colorGroups, tokenTypes, semanticTypes, starters, savedThemes, theme, target, json, contrast }
+  let data = null;
   let activeTab = "ui";
   let showAllColors = false;
   let colorSearch = "";
+  let mode = (vscode.getState() && vscode.getState().mode) || "simple";
 
   const app = document.getElementById("tf-app");
 
@@ -37,7 +39,7 @@
         break;
       case "savedThemesUpdated":
         data.savedThemes = msg.savedThemes;
-        if (activeTab === "themes") renderTabBody();
+        if (mode === "advanced" && activeTab === "themes") renderTabBody();
         break;
       case "exportResult":
         showExportResult(msg.result);
@@ -51,37 +53,190 @@
     }
   });
 
-  // ---- messaging helpers ----------------------------------------------------
   const send = (m) => vscode.postMessage(m);
+
+  function setMode(m) {
+    mode = m;
+    vscode.setState({ mode });
+    renderAll();
+  }
+
+  // ---- essentials definitions (Simple mode) --------------------------------
+  // One friendly control can drive several related color IDs at once.
+  const ESSENTIAL_COLORS = [
+    { label: "Background", ids: ["editor.background"] },
+    { label: "Text", ids: ["editor.foreground"] },
+    {
+      label: "Accent",
+      ids: [
+        "button.background",
+        "activityBarBadge.background",
+        "focusBorder",
+        "progressBar.background",
+        "tab.activeBorderTop",
+      ],
+    },
+    { label: "Sidebar", ids: ["sideBar.background"] },
+    { label: "Status bar", ids: ["statusBar.background"] },
+    { label: "Selection", ids: ["editor.selectionBackground"] },
+  ];
+  const ESSENTIAL_TOKENS = ["comments", "keywords", "strings", "functions", "numbers", "types"];
 
   // ---- top-level render -----------------------------------------------------
   function renderAll() {
     if (!data) return;
     app.innerHTML = "";
-    app.appendChild(buildToolbar());
-    app.appendChild(buildContrastBar());
-    app.appendChild(buildTabs());
-    const body = el("div", "tf-tab-body");
-    body.id = "tf-tab-body";
-    app.appendChild(body);
-    renderTabBody();
+    app.appendChild(buildHeader());
+    if (mode === "simple") {
+      app.appendChild(buildSimpleBody());
+    } else {
+      app.appendChild(buildAdvancedToolbar());
+      app.appendChild(buildContrastBar());
+      app.appendChild(buildTabs());
+      const body = el("div", "tf-tab-body");
+      body.id = "tf-tab-body";
+      app.appendChild(body);
+      renderTabBody();
+    }
     app.appendChild(buildToast());
   }
 
-  function buildToolbar() {
-    const bar = el("div", "tf-toolbar");
+  function buildHeader() {
+    const head = el("div", "tf-head");
 
-    const title = el("div", "tf-title");
-    title.innerHTML = `<strong>ThemePaint</strong>`;
-    bar.appendChild(title);
-
-    // Theme name
+    const nameRow = el("div", "tf-head-row");
     const name = inputText(data.theme.name, "Theme name");
     name.classList.add("tf-name");
     name.addEventListener("change", () => send({ type: "setMeta", name: name.value }));
-    bar.appendChild(labeled("Name", name));
+    nameRow.appendChild(name);
 
-    // Type
+    const toggle = button(mode === "simple" ? "Advanced ▸" : "◂ Simple", () =>
+      setMode(mode === "simple" ? "advanced" : "simple")
+    );
+    toggle.classList.add("tf-mode");
+    nameRow.appendChild(toggle);
+    head.appendChild(nameRow);
+
+    const actions = el("div", "tf-head-row");
+    actions.appendChild(button("Save", () => send({ type: "saveTheme" }), "primary"));
+    actions.appendChild(button("Export", () => send({ type: "export" })));
+    actions.appendChild(button("Revert", () => send({ type: "revert" }), "danger"));
+    head.appendChild(actions);
+    return head;
+  }
+
+  // ---- SIMPLE mode ----------------------------------------------------------
+  function buildSimpleBody() {
+    const wrap = el("div", "tf-simple");
+
+    // Start from a theme
+    wrap.appendChild(sectionTitle("Start from a theme"));
+    const cards = el("div", "tf-starter-cards");
+    (data.starters || []).forEach((s) => {
+      const card = button(s.name, () => send({ type: "loadStarter", id: s.id, fork: false }));
+      card.classList.add("tf-starter");
+      cards.appendChild(card);
+    });
+    wrap.appendChild(cards);
+
+    // Colors
+    wrap.appendChild(sectionTitle("Colors"));
+    const colors = el("div", "tf-essentials");
+    ESSENTIAL_COLORS.forEach((c) => colors.appendChild(essentialColorRow(c.label, c.ids)));
+    wrap.appendChild(colors);
+
+    // Code colors
+    wrap.appendChild(sectionTitle("Code colors"));
+    const tip = el("p", "tf-muted tf-tip");
+    tip.appendChild(button("Open sample code", () => send({ type: "openSample" })));
+    tip.appendChild(document.createTextNode(" to preview while you pick."));
+    wrap.appendChild(tip);
+
+    const code = el("div", "tf-essentials");
+    ESSENTIAL_TOKENS.forEach((id) => {
+      const def = (data.tokenTypes || []).find((t) => t.id === id);
+      if (def) code.appendChild(tokenRow(def));
+    });
+    wrap.appendChild(code);
+
+    const more = el("p", "tf-muted tf-foot");
+    more.textContent =
+      "Want every color, semantic tokens, advanced scopes, or the theme JSON? Switch to Advanced.";
+    wrap.appendChild(more);
+    return wrap;
+  }
+
+  function essentialColorRow(label, ids) {
+    const primary = ids[0];
+    const cur = data.theme.colors[primary] || "";
+    const row = el("div", "tf-row");
+
+    const swatch = el("input", "tf-swatch");
+    swatch.type = "color";
+    swatch.value = toRgbHex(cur) || "#808080";
+
+    const apply = (v) => {
+      ids.forEach((id) => {
+        data.theme.colors[id] = v;
+        send({ type: "setColor", id, value: v });
+      });
+    };
+
+    swatch.addEventListener("input", () => {
+      hex.value = swatch.value;
+      apply(swatch.value);
+    });
+
+    const main = el("div", "tf-row-main");
+    const lab = el("span", "tf-row-label");
+    lab.textContent = label;
+    main.appendChild(lab);
+    if (ids.length > 1) {
+      const note = el("code", "tf-row-id");
+      note.textContent = ids.length + " related colors";
+      main.appendChild(note);
+    }
+
+    const hex = inputText(cur, "default");
+    hex.classList.add("tf-hex");
+    hex.addEventListener("change", () => {
+      const raw = hex.value.trim();
+      if (!raw) {
+        ids.forEach((id) => {
+          delete data.theme.colors[id];
+          send({ type: "resetColor", id });
+        });
+        return;
+      }
+      const v = normalizeHex(raw);
+      if (v) {
+        hex.value = v;
+        swatch.value = toRgbHex(v) || swatch.value;
+        apply(v);
+      }
+    });
+
+    const reset = button("⟲", () => {
+      ids.forEach((id) => {
+        delete data.theme.colors[id];
+        send({ type: "resetColor", id });
+      });
+      hex.value = "";
+    });
+    reset.classList.add("tf-icon");
+    reset.title = "Reset to theme default";
+
+    row.appendChild(swatch);
+    row.appendChild(main);
+    row.appendChild(hex);
+    row.appendChild(reset);
+    return row;
+  }
+
+  // ---- ADVANCED toolbar -----------------------------------------------------
+  function buildAdvancedToolbar() {
+    const bar = el("div", "tf-toolbar");
+
     const kind = el("select", "tf-select");
     ["dark", "light", "hc-black"].forEach((k) => {
       const o = el("option");
@@ -93,7 +248,6 @@
     kind.addEventListener("change", () => send({ type: "setMeta", kind: kind.value }));
     bar.appendChild(labeled("Type", kind));
 
-    // Start from
     const starter = el("select", "tf-select");
     const ph = el("option");
     ph.value = "";
@@ -106,19 +260,13 @@
       starter.appendChild(o);
     });
     bar.appendChild(labeled("Starter", starter));
-
     bar.appendChild(
-      button("Load", () => {
-        if (starter.value) send({ type: "loadStarter", id: starter.value, fork: false });
-      })
+      button("Load", () => starter.value && send({ type: "loadStarter", id: starter.value, fork: false }))
     );
     bar.appendChild(
-      button("Fork", () => {
-        if (starter.value) send({ type: "loadStarter", id: starter.value, fork: true });
-      })
+      button("Fork", () => starter.value && send({ type: "loadStarter", id: starter.value, fork: true }))
     );
 
-    // Target toggle
     const target = el("select", "tf-select");
     [
       ["global", "User (Global)"],
@@ -133,13 +281,7 @@
     target.addEventListener("change", () => send({ type: "setTarget", target: target.value }));
     bar.appendChild(labeled("Apply to", target));
 
-    const spacer = el("div", "tf-spacer");
-    bar.appendChild(spacer);
-
-    bar.appendChild(button("Save", () => send({ type: "saveTheme" }), "primary"));
     bar.appendChild(button("Save to file…", () => send({ type: "saveToFile" })));
-    bar.appendChild(button("Export…", () => send({ type: "export" })));
-    bar.appendChild(button("Revert", () => send({ type: "revert" }), "danger"));
     return bar;
   }
 
@@ -149,7 +291,6 @@
     renderContrastInto(bar);
     return bar;
   }
-
   function renderContrastInto(bar) {
     bar.innerHTML = "";
     const label = el("span", "tf-contrast-title");
@@ -229,7 +370,6 @@
   // ---- UI Colors tab --------------------------------------------------------
   function buildUiTab() {
     const wrap = el("div");
-
     const controls = el("div", "tf-controls");
     const search = inputText(colorSearch, "Search colors…");
     search.classList.add("tf-search");
@@ -254,23 +394,18 @@
 
     data.colorGroups.forEach((g) => {
       const section = el("section", "tf-group");
-      const h = el("h3", "tf-group-title");
-      h.textContent = g.group;
-      section.appendChild(h);
+      section.appendChild(sectionTitle(g.group));
       g.colors.forEach((c) => section.appendChild(colorRow(c.id, c.label)));
       wrap.appendChild(section);
     });
 
     if (showAllColors) {
       wrap.appendChild(buildAddColorSection());
-      // Any colors currently set that aren't in the curated list:
       const known = new Set(data.colorGroups.flatMap((g) => g.colors.map((c) => c.id)));
       const extras = Object.keys(data.theme.colors).filter((id) => !known.has(id));
       if (extras.length) {
         const section = el("section", "tf-group");
-        const h = el("h3", "tf-group-title");
-        h.textContent = "Other set colors";
-        section.appendChild(h);
+        section.appendChild(sectionTitle("Other set colors"));
         extras.forEach((id) => section.appendChild(colorRow(id, id)));
         wrap.appendChild(section);
       }
@@ -280,9 +415,7 @@
 
   function buildAddColorSection() {
     const section = el("section", "tf-group");
-    const h = el("h3", "tf-group-title");
-    h.textContent = "Add any color ID";
-    section.appendChild(h);
+    section.appendChild(sectionTitle("Add any color ID"));
     const row = el("div", "tf-addrow");
     const idInput = inputText("", "e.g. editorBracketHighlight.foreground1");
     const hex = inputText("", "#rrggbb or #rrggbbaa");
@@ -366,7 +499,6 @@
       const s = row.dataset.search || "";
       row.style.display = !colorSearch || s.includes(colorSearch) ? "" : "none";
     });
-    // Hide empty groups.
     document.querySelectorAll(".tf-group").forEach((g) => {
       const rows = g.querySelectorAll(".tf-row");
       const anyVisible = Array.from(rows).some((r) => r.style.display !== "none");
@@ -378,16 +510,12 @@
   function buildSyntaxTab() {
     const wrap = el("div");
     const hint = el("p", "tf-muted");
-    hint.innerHTML =
-      'Tip: open a sample file to watch changes live — ';
-    const sampleBtn = button("Open sample code", () => send({ type: "openSample" }));
-    hint.appendChild(sampleBtn);
+    hint.appendChild(button("Open sample code", () => send({ type: "openSample" })));
+    hint.appendChild(document.createTextNode(" to preview changes live."));
     wrap.appendChild(hint);
 
     const section = el("section", "tf-group");
-    const h = el("h3", "tf-group-title");
-    h.textContent = "Token types";
-    section.appendChild(h);
+    section.appendChild(sectionTitle("Token types"));
     data.tokenTypes.forEach((t) => section.appendChild(tokenRow(t)));
     wrap.appendChild(section);
 
@@ -442,7 +570,8 @@
     const reset = button("⟲", () => {
       delete data.theme.tokens[t.id];
       send({ type: "resetToken", id: t.id });
-      renderTabBody();
+      if (mode === "simple") renderAll();
+      else renderTabBody();
     });
     reset.classList.add("tf-icon");
 
@@ -456,9 +585,7 @@
 
   function buildAdvancedRules() {
     const section = el("section", "tf-group");
-    const h = el("h3", "tf-group-title");
-    h.textContent = "Advanced scopes";
-    section.appendChild(h);
+    section.appendChild(sectionTitle("Advanced scopes"));
 
     const list = el("div");
     (data.theme.advancedRules || []).forEach((rule, i) => {
@@ -468,7 +595,8 @@
       const sw = el("span", "tf-mini-swatch");
       sw.style.background = rule.settings.foreground || "transparent";
       const meta = el("span", "tf-muted");
-      meta.textContent = (rule.settings.foreground || "") + (rule.settings.fontStyle ? " · " + rule.settings.fontStyle : "");
+      meta.textContent =
+        (rule.settings.foreground || "") + (rule.settings.fontStyle ? " · " + rule.settings.fontStyle : "");
       const del = button("✕", () => send({ type: "removeAdvancedRule", index: i }));
       del.classList.add("tf-icon");
       r.appendChild(sw);
@@ -501,9 +629,7 @@
     section.appendChild(row);
 
     const guide = el("p", "tf-muted");
-    guide.appendChild(
-      button("Inspect scopes in editor", () => send({ type: "inspectScopes" }))
-    );
+    guide.appendChild(button("Inspect scopes in editor", () => send({ type: "inspectScopes" })));
     section.appendChild(guide);
     return section;
   }
@@ -515,17 +641,13 @@
     const enable = el("input");
     enable.type = "checkbox";
     enable.checked = !!data.theme.semanticEnabled;
-    enable.addEventListener("change", () =>
-      send({ type: "setSemanticEnabled", enabled: enable.checked })
-    );
+    enable.addEventListener("change", () => send({ type: "setSemanticEnabled", enabled: enable.checked }));
     enableLbl.appendChild(enable);
     enableLbl.appendChild(document.createTextNode(" Enable semantic highlighting"));
     wrap.appendChild(enableLbl);
 
     const section = el("section", "tf-group");
-    const h = el("h3", "tf-group-title");
-    h.textContent = "Semantic token types";
-    section.appendChild(h);
+    section.appendChild(sectionTitle("Semantic token types"));
     data.semanticTypes.forEach((t) => section.appendChild(semanticRow(t)));
     wrap.appendChild(section);
     return wrap;
@@ -589,9 +711,7 @@
   // ---- My Themes tab --------------------------------------------------------
   function buildThemesTab() {
     const wrap = el("div");
-    wrap.appendChild(
-      button("Save current theme", () => send({ type: "saveTheme" }), "primary")
-    );
+    wrap.appendChild(button("Save current theme", () => send({ type: "saveTheme" }), "primary"));
     const list = el("div", "tf-themes");
     const saved = data.savedThemes || [];
     if (!saved.length) {
@@ -608,7 +728,6 @@
       actions.appendChild(button("Load", () => send({ type: "loadSaved", id: s.id })));
       actions.appendChild(
         button("Rename", () => {
-          // Inline rename: window.prompt is disabled in VS Code webviews.
           name.textContent = "";
           const input = inputText(s.name, "New name");
           const ok = button("Save", () => {
@@ -659,15 +778,15 @@
     const wrap = el("div");
     const p = el("p");
     p.innerHTML =
-      "Click a token in your code, then use one of these. <em>Semantic</em> mapping works " +
-      "when the language has a semantic provider (TS/JS, etc.); otherwise use the TextMate " +
-      "scope inspector and paste the scope into <strong>Syntax → Advanced scopes</strong>.";
+      "Click a token in your code, then use one of these. Semantic mapping works when the " +
+      "language has a semantic provider (TS/JS, etc.); otherwise use the scope inspector and " +
+      "paste the scope into <strong>Syntax → Advanced scopes</strong>.";
     wrap.appendChild(p);
 
     const controls = el("div", "tf-controls");
     controls.appendChild(button("Open sample code", () => send({ type: "openSample" })));
     controls.appendChild(
-      button("Identify semantic token at cursor", () => send({ type: "pickFromCursor" }), "primary")
+      button("Identify token at cursor", () => send({ type: "pickFromCursor" }), "primary")
     );
     controls.appendChild(button("Inspect TextMate scopes", () => send({ type: "inspectScopes" })));
     wrap.appendChild(controls);
@@ -701,7 +820,7 @@
         );
       } else {
         const note = el("p", "tf-muted");
-        note.textContent = `"${info.tokenType}" isn't in the curated semantic list — add a rule for it in the JSON, or use a TextMate scope.`;
+        note.textContent = `"${info.tokenType}" isn't in the curated list — add a rule for it in JSON or as a scope.`;
         act.appendChild(note);
       }
       box.appendChild(act);
@@ -709,6 +828,7 @@
   }
 
   function showExportResult(result) {
+    if (mode !== "advanced") setMode("advanced");
     activeTab = "json";
     renderAll();
     const body = document.getElementById("tf-tab-body");
@@ -728,6 +848,11 @@
     const e = document.createElement(tag);
     if (cls) e.className = cls;
     return e;
+  }
+  function sectionTitle(text) {
+    const h = el("h3", "tf-group-title");
+    h.textContent = text;
+    return h;
   }
   function inputText(value, placeholder) {
     const i = el("input", "tf-input");

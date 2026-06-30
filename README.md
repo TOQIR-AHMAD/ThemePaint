@@ -7,6 +7,11 @@ so the editor updates as you go.
 Comes with three starter themes you can use directly or fork as a starting point.
 Save your work, export it as an installable theme, and revert if you don't like it.
 
+It opens in a **Simple** view by default — pick a starter and adjust a few key
+colors (including an "Accent" that recolors several UI parts at once). Switch to
+**Advanced** when you want every color, semantic tokens, custom scopes, and the
+theme JSON.
+
 ## Features
 
 - **Live preview** — every change is written to your settings and applied instantly, with no reload.
