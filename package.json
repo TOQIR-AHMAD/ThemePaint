@@ -2,7 +2,7 @@
   "name": "themepaint",
   "displayName": "ThemePaint",
   "description": "A pack of 10 handcrafted color themes with a one-click theme picker in the sidebar.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",
@@ -56,16 +56,181 @@
       }
     ],
     "themes": [
-      { "label": "Cobalt Forge", "uiTheme": "vs-dark", "path": "./themes/cobalt-forge.json" },
-      { "label": "Onyx One", "uiTheme": "vs-dark", "path": "./themes/onyx-one.json" },
-      { "label": "Vampire", "uiTheme": "vs-dark", "path": "./themes/vampire.json" },
-      { "label": "Neon", "uiTheme": "vs-dark", "path": "./themes/neon.json" },
-      { "label": "Frost", "uiTheme": "vs-dark", "path": "./themes/frost.json" },
-      { "label": "Retro Amber", "uiTheme": "vs-dark", "path": "./themes/retro-amber.json" },
-      { "label": "Deep Ocean", "uiTheme": "vs-dark", "path": "./themes/deep-ocean.json" },
-      { "label": "Clean Light", "uiTheme": "vs", "path": "./themes/clean-light.json" },
-      { "label": "Solar Day", "uiTheme": "vs", "path": "./themes/solar-day.json" },
-      { "label": "High Contrast Forge", "uiTheme": "hc-black", "path": "./themes/high-contrast-forge.json" }
+      {
+        "label": "Andromeda",
+        "uiTheme": "vs-dark",
+        "path": "./themes/andromeda.json"
+      },
+      {
+        "label": "Ayu Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ayu-dark.json"
+      },
+      {
+        "label": "Ayu Mirage",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ayu-mirage.json"
+      },
+      {
+        "label": "Catppuccin Mocha",
+        "uiTheme": "vs-dark",
+        "path": "./themes/catppuccin-mocha.json"
+      },
+      {
+        "label": "Cobalt Forge",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cobalt-forge.json"
+      },
+      {
+        "label": "Deep Ocean",
+        "uiTheme": "vs-dark",
+        "path": "./themes/deep-ocean.json"
+      },
+      {
+        "label": "Everforest",
+        "uiTheme": "vs-dark",
+        "path": "./themes/everforest.json"
+      },
+      {
+        "label": "Frost",
+        "uiTheme": "vs-dark",
+        "path": "./themes/frost.json"
+      },
+      {
+        "label": "GitHub Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/github-dark.json"
+      },
+      {
+        "label": "High Contrast Forge",
+        "uiTheme": "hc-black",
+        "path": "./themes/high-contrast-forge.json"
+      },
+      {
+        "label": "Horizon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/horizon.json"
+      },
+      {
+        "label": "Kanagawa",
+        "uiTheme": "vs-dark",
+        "path": "./themes/kanagawa.json"
+      },
+      {
+        "label": "Material Ocean",
+        "uiTheme": "vs-dark",
+        "path": "./themes/material-ocean.json"
+      },
+      {
+        "label": "Neon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/neon.json"
+      },
+      {
+        "label": "Oceanic Next",
+        "uiTheme": "vs-dark",
+        "path": "./themes/oceanic-next.json"
+      },
+      {
+        "label": "Onyx One",
+        "uiTheme": "vs-dark",
+        "path": "./themes/onyx-one.json"
+      },
+      {
+        "label": "Palenight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/palenight.json"
+      },
+      {
+        "label": "Panda",
+        "uiTheme": "vs-dark",
+        "path": "./themes/panda.json"
+      },
+      {
+        "label": "Retro Amber",
+        "uiTheme": "vs-dark",
+        "path": "./themes/retro-amber.json"
+      },
+      {
+        "label": "Rosé Pine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/rose-pine.json"
+      },
+      {
+        "label": "Shades of Purple",
+        "uiTheme": "vs-dark",
+        "path": "./themes/shades-of-purple.json"
+      },
+      {
+        "label": "Synthwave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/synthwave.json"
+      },
+      {
+        "label": "Tokyo Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-night.json"
+      },
+      {
+        "label": "Vampire",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vampire.json"
+      },
+      {
+        "label": "Catppuccin Latte",
+        "uiTheme": "vs",
+        "path": "./themes/catppuccin-latte.json"
+      },
+      {
+        "label": "Clean Light",
+        "uiTheme": "vs",
+        "path": "./themes/clean-light.json"
+      },
+      {
+        "label": "GitHub Light",
+        "uiTheme": "vs",
+        "path": "./themes/github-light.json"
+      },
+      {
+        "label": "Material Lighter",
+        "uiTheme": "vs",
+        "path": "./themes/material-lighter.json"
+      },
+      {
+        "label": "Quiet Light",
+        "uiTheme": "vs",
+        "path": "./themes/quiet-light.json"
+      },
+      {
+        "label": "Solar Day",
+        "uiTheme": "vs",
+        "path": "./themes/solar-day.json"
+      },
+      {
+        "label": "Cyber: Amber CRT",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyber-amber-crt.json"
+      },
+      {
+        "label": "Cyber: Blue Team",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyber-blue-team.json"
+      },
+      {
+        "label": "Cyber: Matrix",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyber-matrix.json"
+      },
+      {
+        "label": "Cyber: Neon City",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyber-neon.json"
+      },
+      {
+        "label": "Cyber: Red Team",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyber-red-team.json"
+      }
     ]
   },
   "scripts": {
