@@ -1,0 +1,45 @@
+{
+  "name": "themeforge",
+  "displayName": "ThemeForge",
+  "description": "Visually create VS Code color themes and syntax highlighting with live preview — no JSON required.",
+  "version": "0.0.1",
+  "publisher": "themeforge",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "keywords": [
+    "theme",
+    "color",
+    "syntax",
+    "tokencolor",
+    "theme creator"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "themeForge.open",
+        "title": "ThemeForge: Open Theme Creator"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js --production",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.84.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}
