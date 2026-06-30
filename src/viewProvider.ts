@@ -130,12 +130,26 @@ export class ThemePaintViewProvider implements vscode.WebviewViewProvider {
 
   /** Remove color overrides that would mask the theme (incl. legacy ones). */
   private async clearCustomizations(cfg: vscode.WorkspaceConfiguration): Promise<void> {
+    // Clear at both Global and Workspace scope — legacy versions wrote
+    // `editor.background` into the workspace's .vscode/settings.json, which
+    // overrides the theme regardless of any global cleanup.
+    const targets = [
+      vscode.ConfigurationTarget.Global,
+      vscode.ConfigurationTarget.Workspace,
+      vscode.ConfigurationTarget.WorkspaceFolder,
+    ];
     for (const key of [
       "workbench.colorCustomizations",
       "editor.tokenColorCustomizations",
       "editor.semanticTokenColorCustomizations",
     ]) {
-      await cfg.update(key, undefined, vscode.ConfigurationTarget.Global);
+      for (const target of targets) {
+        try {
+          await cfg.update(key, undefined, target);
+        } catch {
+          // No workspace/folder open, or nothing set at that scope — ignore.
+        }
+      }
     }
   }
 
