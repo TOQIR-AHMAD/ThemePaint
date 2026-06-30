@@ -50,19 +50,6 @@ operators.
 
 You can also run **ThemePaint: Open Theme Picker** from the Command Palette.
 
-## Development
-
-```bash
-npm install
-npm run themes   # regenerate the theme files from scripts/generate-themes.js
-npm run watch
-```
-
-Press F5 to launch the Extension Development Host. Themes are generated from
-compact palettes in `scripts/generate-themes.js` into `themes/` and contributed
-in `package.json` under `contributes.themes`. The sidebar UI is a small webview
-view (`src/viewProvider.ts` + `media/`).
-
 ## License
 
 MIT
