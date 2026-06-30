@@ -1,4 +1,4 @@
-// ThemeForge webview — renders the editor UI and drives the live-preview loop.
+// ThemePaint webview — renders the editor UI and drives the live-preview loop.
 // The extension host is the only writer of settings; we send intent messages.
 (function () {
   const vscode = acquireVsCodeApi();
@@ -72,7 +72,7 @@
     const bar = el("div", "tf-toolbar");
 
     const title = el("div", "tf-title");
-    title.innerHTML = `<strong>ThemeForge</strong>`;
+    title.innerHTML = `<strong>ThemePaint</strong>`;
     bar.appendChild(title);
 
     // Theme name

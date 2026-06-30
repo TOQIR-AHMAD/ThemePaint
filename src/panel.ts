@@ -27,9 +27,9 @@ const CONTRAST_PAIRS: { label: string; fg: string; bg: string }[] = [
   { label: "Button", fg: "button.foreground", bg: "button.background" },
 ];
 
-export class ThemeForgePanel {
-  public static current: ThemeForgePanel | undefined;
-  private static readonly viewType = "themeForge";
+export class ThemePaintPanel {
+  public static current: ThemePaintPanel | undefined;
+  private static readonly viewType = "themePaint";
 
   private readonly panel: vscode.WebviewPanel;
   private readonly context: vscode.ExtensionContext;
@@ -44,13 +44,13 @@ export class ThemeForgePanel {
 
   public static createOrShow(context: vscode.ExtensionContext) {
     const column = vscode.window.activeTextEditor?.viewColumn;
-    if (ThemeForgePanel.current) {
-      ThemeForgePanel.current.panel.reveal(column);
+    if (ThemePaintPanel.current) {
+      ThemePaintPanel.current.panel.reveal(column);
       return;
     }
     const panel = vscode.window.createWebviewPanel(
-      ThemeForgePanel.viewType,
-      "ThemeForge",
+      ThemePaintPanel.viewType,
+      "ThemePaint",
       column ?? vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -58,7 +58,7 @@ export class ThemeForgePanel {
         localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, "media")],
       }
     );
-    ThemeForgePanel.current = new ThemeForgePanel(panel, context);
+    ThemePaintPanel.current = new ThemePaintPanel(panel, context);
   }
 
   private constructor(panel: vscode.WebviewPanel, context: vscode.ExtensionContext) {
@@ -307,7 +307,7 @@ export class ThemeForgePanel {
           break;
 
         default:
-          console.warn("[ThemeForge] Unhandled message:", msg);
+          console.warn("[ThemePaint] Unhandled message:", msg);
       }
     } catch (err: any) {
       this.status("error", err?.message ?? String(err));
@@ -524,17 +524,17 @@ export class ThemeForgePanel {
   <meta http-equiv="Content-Security-Policy" content="${csp}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="${stylesUri}" rel="stylesheet" />
-  <title>ThemeForge</title>
+  <title>ThemePaint</title>
 </head>
 <body>
-  <div id="tf-app"><p class="tf-placeholder">Loading ThemeForge…</p></div>
+  <div id="tf-app"><p class="tf-placeholder">Loading ThemePaint…</p></div>
   <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;
   }
 
   public dispose() {
-    ThemeForgePanel.current = undefined;
+    ThemePaintPanel.current = undefined;
     this.panel.dispose();
     while (this.disposables.length) {
       this.disposables.pop()?.dispose();

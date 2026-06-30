@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { WorkingTheme } from "./themeModel";
 
-const STORE_KEY = "themeForge.savedThemes";
+const STORE_KEY = "themePaint.savedThemes";
 
 export interface SavedTheme {
   id: string;

@@ -1,10 +1,14 @@
 {
-  "name": "themeforge",
-  "displayName": "ThemeForge",
-  "description": "Visually create VS Code color themes and syntax highlighting with live preview — no JSON required.",
+  "name": "themepaint",
+  "displayName": "ThemePaint",
+  "description": "Build VS Code color themes by picking colors, with live preview. Covers the workbench UI and code syntax.",
   "version": "0.0.1",
-  "publisher": "themeforge",
+  "publisher": "ToqirAhmad",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TOQIR-AHMAD/ThemePaint.git"
+  },
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -24,8 +28,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "themeForge.open",
-        "title": "ThemeForge: Open Theme Creator"
+        "command": "themePaint.open",
+        "title": "ThemePaint: Open Theme Creator"
       }
     ]
   },

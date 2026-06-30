@@ -1,5 +1,5 @@
 /** A small TypeScript snippet exercising the common token types for live preview. */
-export const SAMPLE_CODE = `// ThemeForge sample — watch these colors change live
+export const SAMPLE_CODE = `// ThemePaint sample — watch these colors change live
 import { readFile } from "fs/promises";
 
 const MAX_RETRIES = 3;

@@ -40,7 +40,7 @@ export async function exportTheme(
   const pkg = {
     name: id,
     displayName: theme.name,
-    description: `${theme.name} — a color theme created with ThemeForge.`,
+    description: `${theme.name} — a color theme created with ThemePaint.`,
     version,
     engines: { vscode: "^1.84.0" },
     categories: ["Themes"],

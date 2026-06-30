@@ -1,4 +1,4 @@
-// esbuild bundler for the ThemeForge extension host code.
+// esbuild bundler for the ThemePaint extension host code.
 // The webview code (media/) is plain browser JS and is NOT bundled — it is
 // shipped as-is and loaded via webview.asWebviewUri.
 const esbuild = require("esbuild");

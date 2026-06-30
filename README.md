@@ -1,4 +1,4 @@
-# ThemeForge
+# ThemePaint
 
 Build a VS Code color theme by picking colors instead of editing JSON. It covers
 both the workbench UI and code syntax, and writes your changes straight to settings
@@ -14,7 +14,7 @@ npm install
 npm run watch
 ```
 
-Press F5 to launch the Extension Development Host, then run **ThemeForge: Open Theme
+Press F5 to launch the Extension Development Host, then run **ThemePaint: Open Theme
 Creator** from the Command Palette.
 
 A quick tour:
@@ -97,4 +97,3 @@ themes/               the three starters
 ## License
 
 MIT
-# ThemePaint

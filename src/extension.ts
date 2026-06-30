@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
-import { ThemeForgePanel } from "./panel";
+import { ThemePaintPanel } from "./panel";
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("themeForge.open", () => {
-      ThemeForgePanel.createOrShow(context);
+    vscode.commands.registerCommand("themePaint.open", () => {
+      ThemePaintPanel.createOrShow(context);
     })
   );
 }

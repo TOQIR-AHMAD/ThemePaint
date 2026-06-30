@@ -79,7 +79,7 @@ export function buildTokenColorCustomizations(theme: WorkingTheme): any {
     if (def.key) {
       out[def.key] = settings;
     } else if (def.scope) {
-      textMateRules.push({ name: `ThemeForge ${def.label}`, scope: def.scope, settings });
+      textMateRules.push({ name: `ThemePaint ${def.label}`, scope: def.scope, settings });
     }
   }
 
@@ -142,7 +142,7 @@ export function buildThemeFile(theme: WorkingTheme): any {
       settings.fontStyle = setting.fontStyle;
     }
     const scope = def.scope ?? defaultScopeForKey(def.key!);
-    tokenColors.push({ name: `ThemeForge ${def.label}`, scope, settings });
+    tokenColors.push({ name: `ThemePaint ${def.label}`, scope, settings });
   }
   for (const rule of theme.advancedRules) {
     if (rule.scope && rule.settings && (rule.settings.foreground || rule.settings.fontStyle)) {
