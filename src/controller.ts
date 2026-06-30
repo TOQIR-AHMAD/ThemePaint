@@ -346,7 +346,6 @@ export class ThemePaintController {
     this.currentSavedId = undefined;
     await this.writer.applyTheme(this.theme);
     this.sendLoadTheme();
-    this.status("info", fork ? `Forked "${loaded.name}".` : `Loaded "${loaded.name}".`);
   }
 
   private async doRevert() {
@@ -354,7 +353,6 @@ export class ThemePaintController {
     this.theme = emptyTheme(this.theme.name, this.theme.type);
     this.seedFromSnapshot();
     this.sendLoadTheme();
-    this.status("info", "Reverted to your original customizations.");
   }
 
   private async doSave() {
@@ -389,7 +387,6 @@ export class ThemePaintController {
     this.currentSavedId = id;
     await this.writer.applyTheme(this.theme);
     this.sendLoadTheme();
-    this.status("info", `Loaded "${this.theme.name}".`);
   }
 
   private async doExport() {
@@ -402,7 +399,6 @@ export class ThemePaintController {
       return;
     }
     const target = vscode.Uri.joinPath(folder[0], slugFile(this.theme.name) + "-theme");
-    this.status("info", "Building theme package…");
     const result = await exportTheme(
       target,
       this.theme,

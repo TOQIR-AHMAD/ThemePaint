@@ -1,0 +1,89 @@
+{
+    "workbench.colorCustomizations": {
+        "editor.background": "#193549",
+        "editor.foreground": "#ffffff",
+        "editorLineNumber.foreground": "#aaaaaa55",
+        "editorLineNumber.activeForeground": "#ffc600",
+        "editor.selectionBackground": "#0050a4",
+        "editor.lineHighlightBackground": "#1f4662",
+        "editorCursor.foreground": "#ffc600",
+        "editor.findMatchBackground": "#ffc60099",
+        "editorWhitespace.foreground": "#ffffff1a",
+        "sideBar.background": "#15232d",
+        "sideBar.foreground": "#ffffff",
+        "sideBarTitle.foreground": "#ffc600",
+        "sideBarSectionHeader.background": "#193549",
+        "statusBar.noFolderBackground": "#0d3a58",
+        "editorGroupHeader.tabsBackground": "#15232d",
+        "tab.activeBackground": "#193549",
+        "tab.activeForeground": "#ffc600",
+        "tab.inactiveBackground": "#15232d",
+        "tab.inactiveForeground": "#ffffff80",
+        "tab.activeBorderTop": "#ffc600",
+        "panel.background": "#15232d",
+        "terminal.background": "#193549",
+        "terminal.foreground": "#ffffff",
+        "button.background": "#1f8acc",
+        "button.foreground": "#ffffff",
+        "button.hoverBackground": "#2ba6e8",
+        "input.background": "#122738",
+        "input.foreground": "#ffffff",
+        "focusBorder": "#1f8acc",
+        "list.activeSelectionBackground": "#0050a4",
+        "list.hoverBackground": "#1f4662",
+        "badge.background": "#ffc600",
+        "badge.foreground": "#193549"
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": {
+            "foreground": "#0088ff",
+            "fontStyle": "italic"
+        },
+        "strings": {
+            "foreground": "#3ad900"
+        },
+        "numbers": {
+            "foreground": "#ff628c"
+        },
+        "keywords": {
+            "foreground": "#ff9d00"
+        },
+        "functions": {
+            "foreground": "#ffc600"
+        },
+        "variables": {
+            "foreground": "#ffffff"
+        },
+        "types": {
+            "foreground": "#80fcff"
+        },
+        "textMateRules": [
+            {
+                "name": "ThemePaint Operators",
+                "scope": "keyword.operator",
+                "settings": {
+                    "foreground": "#ff9d00"
+                }
+            },
+            {
+                "name": "ThemePaint Classes",
+                "scope": "entity.name.type.class",
+                "settings": {
+                    "foreground": "#80fcff",
+                    "fontStyle": "bold"
+                }
+            }
+        ]
+    },
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": false,
+        "rules": {
+            "function": {
+                "foreground": "#ffc600"
+            },
+            "class": {
+                "foreground": "#80fcff"
+            }
+        }
+    }
+}

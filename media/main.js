@@ -76,11 +76,9 @@
         "tab.activeBorderTop",
       ],
     },
-    { label: "Sidebar", ids: ["sideBar.background"] },
-    { label: "Status bar", ids: ["statusBar.background"] },
     { label: "Selection", ids: ["editor.selectionBackground"] },
   ];
-  const ESSENTIAL_TOKENS = ["comments", "keywords", "strings", "functions", "numbers", "types"];
+  const ESSENTIAL_TOKENS = ["comments", "keywords", "strings", "functions"];
 
   // ---- top-level render -----------------------------------------------------
   function renderAll() {
@@ -119,8 +117,10 @@
 
     const actions = el("div", "tf-head-row");
     actions.appendChild(button("Save", () => send({ type: "saveTheme" }), "primary"));
-    actions.appendChild(button("Export", () => send({ type: "export" })));
     actions.appendChild(button("Revert", () => send({ type: "revert" }), "danger"));
+    if (mode === "advanced") {
+      actions.appendChild(button("Export", () => send({ type: "export" })));
+    }
     head.appendChild(actions);
     return head;
   }
@@ -129,15 +129,22 @@
   function buildSimpleBody() {
     const wrap = el("div", "tf-simple");
 
-    // Start from a theme
-    wrap.appendChild(sectionTitle("Start from a theme"));
-    const cards = el("div", "tf-starter-cards");
+    // Start from a theme — a single dropdown that applies on pick.
+    const starter = el("select", "tf-select tf-starter-select");
+    const ph = el("option");
+    ph.value = "";
+    ph.textContent = "Start from a theme…";
+    starter.appendChild(ph);
     (data.starters || []).forEach((s) => {
-      const card = button(s.name, () => send({ type: "loadStarter", id: s.id, fork: false }));
-      card.classList.add("tf-starter");
-      cards.appendChild(card);
+      const o = el("option");
+      o.value = s.id;
+      o.textContent = s.name;
+      starter.appendChild(o);
     });
-    wrap.appendChild(cards);
+    starter.addEventListener("change", () => {
+      if (starter.value) send({ type: "loadStarter", id: starter.value, fork: false });
+    });
+    wrap.appendChild(starter);
 
     // Colors
     wrap.appendChild(sectionTitle("Colors"));
@@ -146,23 +153,13 @@
     wrap.appendChild(colors);
 
     // Code colors
-    wrap.appendChild(sectionTitle("Code colors"));
-    const tip = el("p", "tf-muted tf-tip");
-    tip.appendChild(button("Open sample code", () => send({ type: "openSample" })));
-    tip.appendChild(document.createTextNode(" to preview while you pick."));
-    wrap.appendChild(tip);
-
+    wrap.appendChild(sectionTitle("Code"));
     const code = el("div", "tf-essentials");
     ESSENTIAL_TOKENS.forEach((id) => {
       const def = (data.tokenTypes || []).find((t) => t.id === id);
       if (def) code.appendChild(tokenRow(def));
     });
     wrap.appendChild(code);
-
-    const more = el("p", "tf-muted tf-foot");
-    more.textContent =
-      "Want every color, semantic tokens, advanced scopes, or the theme JSON? Switch to Advanced.";
-    wrap.appendChild(more);
     return wrap;
   }
 

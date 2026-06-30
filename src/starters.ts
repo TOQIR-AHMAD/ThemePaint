@@ -17,7 +17,14 @@ export interface StarterMeta {
 
 const STARTER_FILES = [
   "cobalt-forge.json",
+  "onyx-one.json",
+  "vampire.json",
+  "neon.json",
+  "frost.json",
+  "retro-amber.json",
+  "deep-ocean.json",
   "clean-light.json",
+  "solar-day.json",
   "high-contrast-forge.json",
 ];
 
