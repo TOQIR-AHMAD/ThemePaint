@@ -52,6 +52,10 @@ code,
 .tf-mode {
   margin-left: auto;
 }
+.tf-hint {
+  font-size: 0.82em;
+  opacity: 0.6;
+}
 
 /* ---- simple mode ---- */
 .tf-simple {

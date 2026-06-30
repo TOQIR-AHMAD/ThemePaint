@@ -116,7 +116,9 @@
     head.appendChild(nameRow);
 
     const actions = el("div", "tf-head-row");
-    actions.appendChild(button("Save", () => send({ type: "saveTheme" }), "primary"));
+    const save = button("Save", () => send({ type: "saveTheme" }), "primary");
+    save.title = "Keep these colors. Without Save, changes are only a preview and reset when you close.";
+    actions.appendChild(save);
     const reset = button("Reset", () => send({ type: "resetAll" }));
     reset.title = "Clear all colors back to the theme's defaults";
     actions.appendChild(reset);
@@ -127,6 +129,10 @@
       actions.appendChild(button("Export", () => send({ type: "export" })));
     }
     head.appendChild(actions);
+
+    const hint = el("div", "tf-hint");
+    hint.textContent = "Changes preview live — click Save to keep them.";
+    head.appendChild(hint);
     return head;
   }
 

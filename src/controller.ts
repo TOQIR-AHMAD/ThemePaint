@@ -35,6 +35,12 @@ export class ThemePaintController {
   private theme: WorkingTheme = emptyTheme();
   private currentSavedId: string | undefined;
   private seq = 0;
+  /**
+   * Live edits are written to settings only as a PREVIEW. They are kept when the
+   * user clicks Save; otherwise the snapshot is restored when the view closes,
+   * so nothing is persisted unless the user asked for it.
+   */
+  private saved = false;
 
   constructor(
     private readonly webview: vscode.Webview,
@@ -56,6 +62,10 @@ export class ThemePaintController {
   }
 
   public dispose() {
+    // Discard unsaved preview edits when the view closes.
+    if (!this.saved) {
+      void this.writer.revert();
+    }
     while (this.disposables.length) {
       this.disposables.pop()?.dispose();
     }
@@ -371,8 +381,12 @@ export class ThemePaintController {
     const now = ++this.seq + Date.now();
     const rec = await this.store.save(this.theme, now, this.currentSavedId);
     this.currentSavedId = rec.id;
+    // Keep the applied colors: mark the session saved and re-baseline the
+    // snapshot to the current state so closing no longer discards it.
+    this.saved = true;
+    this.writer.takeSnapshot();
     this.pushSavedThemes();
-    this.status("info", `Saved "${this.theme.name}".`);
+    this.status("info", `Saved "${this.theme.name}" — colors kept.`);
   }
 
   private async doSaveToFile() {
@@ -398,6 +412,9 @@ export class ThemePaintController {
     this.theme = JSON.parse(JSON.stringify(rec.theme));
     this.currentSavedId = id;
     await this.writer.applyTheme(this.theme);
+    // Choosing a saved theme applies it for real (kept on close).
+    this.saved = true;
+    this.writer.takeSnapshot();
     this.sendLoadTheme();
   }
 
