@@ -2,7 +2,7 @@
   "name": "themepaint",
   "displayName": "ThemePaint",
   "description": "A pack of 100 modern color themes in 20 categories, with a one-click theme picker in the sidebar.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "publisher": "ToqirAhmad",
   "license": "MIT",
   "icon": "icon.png",
@@ -564,6 +564,8 @@
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
     "themes": "node scripts/generate-themes.js",
+    "previews": "node scripts/generate-previews.js",
+    "previews:shoot": "node scripts/shoot-previews.js",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

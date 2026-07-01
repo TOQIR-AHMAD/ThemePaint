@@ -1,0 +1,37 @@
+[
+  {
+    "name": "hero",
+    "w": 1280,
+    "h": 460
+  },
+  {
+    "name": "andromeda",
+    "w": 1000,
+    "h": 640
+  },
+  {
+    "name": "tokyo-night",
+    "w": 1000,
+    "h": 640
+  },
+  {
+    "name": "synthwave",
+    "w": 1000,
+    "h": 640
+  },
+  {
+    "name": "catppuccin",
+    "w": 1000,
+    "h": 640
+  },
+  {
+    "name": "github-dark",
+    "w": 1000,
+    "h": 640
+  },
+  {
+    "name": "matrix",
+    "w": 1000,
+    "h": 640
+  }
+]

@@ -1,0 +1,110 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:transparent; }
+  .win {
+    width:1000px; height:640px; border-radius:12px; overflow:hidden;
+    font-family:'Cascadia Code','JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+    box-shadow:0 24px 70px rgba(0,0,0,.5); display:flex; flex-direction:column;
+    background:#23262e;
+  }
+  .titlebar { height:34px; background:#191b21; display:flex; align-items:center;
+    padding:0 12px; color:#73727b; font-size:12px; gap:8px; flex:0 0 auto; }
+  .dots { display:flex; gap:7px; margin-right:8px; }
+  .dots i { width:11px; height:11px; border-radius:50%; display:block; }
+  .title { color:#d5ced9; opacity:.8; }
+  .body { flex:1; display:flex; min-height:0; }
+  .activity { width:48px; background:#191b21; display:flex; flex-direction:column;
+    align-items:center; padding-top:12px; gap:18px; flex:0 0 auto; }
+  .activity .ico { width:22px; height:22px; border-radius:5px; opacity:.5; background:#73727b; }
+  .activity .ico.sel { opacity:1; background:#00e8c6; }
+  .sidebar { width:232px; background:#1e2128; color:#d5ced9; padding:10px 0; flex:0 0 auto;
+    font-size:12px; overflow:hidden; }
+  .side-title { color:#00e8c6; font-size:11px; font-weight:700; letter-spacing:.12em;
+    padding:0 14px 8px; text-transform:uppercase; }
+  .side-head { color:#73727b; font-size:10px; font-weight:700; letter-spacing:.1em;
+    padding:10px 14px 4px; }
+  .side-item { display:flex; align-items:center; gap:8px; padding:5px 14px; }
+  .side-item.on { background:#00e8c642; }
+  .side-item.on .side-label { color:#00e8c6; }
+  .swatch { width:11px; height:11px; border-radius:3px; flex:0 0 auto;
+    box-shadow:0 0 0 1px rgba(255,255,255,.08) inset; }
+  .side-label { color:#d5ced9; }
+  .editor { flex:1; background:#23262e; display:flex; flex-direction:column; min-width:0; }
+  .tabs { height:36px; background:#202229; display:flex; align-items:stretch; flex:0 0 auto; }
+  .tab { display:flex; align-items:center; gap:8px; padding:0 16px; font-size:12px;
+    color:#73727b; background:#202229; border-right:1px solid #202229; }
+  .tab.active { background:#23262e; color:#00e8c6; box-shadow:inset 0 2px 0 #00e8c6; }
+  .tab .fdot { width:8px; height:8px; border-radius:50%; background:#ffe66d; }
+  .code-area { flex:1; padding:14px 0; overflow:hidden; }
+  .row { display:flex; font-size:13.5px; line-height:21px; height:21px; white-space:pre; }
+  .row.active { background:#30333b; }
+  .ln { width:44px; text-align:right; padding-right:16px; color:#73727b; user-select:none; flex:0 0 auto; }
+  .code { color:#d5ced9; }
+  .com { color:#6c6783; font-style:italic; }
+  .kw  { color:#c74ded; }
+  .str { color:#96e072; }
+  .fn  { color:#ffe66d; }
+  .num { color:#f39c12; }
+  .ty  { color:#7cb7ff; }
+  .var { color:#d5ced9; }
+  .op  { color:#00e8c6; }
+  .prop{ color:#ee5d43; }
+  .param{ color:#b5b0ba; }
+  .t   { color:#d5ced9; }
+  .statusbar { height:26px; background:#191b21; display:flex; align-items:center;
+    padding:0 12px; gap:16px; font-size:11px; color:#d5ced9; flex:0 0 auto; }
+  .statusbar .accent { color:#1a1a1a; background:#00e8c6; padding:2px 8px;
+    border-radius:4px; font-weight:600; }
+  </style></head><body>
+  <div class="win">
+    <div class="titlebar">
+      <div class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+      <span class="title">applyTheme.ts — ThemePaint</span>
+    </div>
+    <div class="body">
+      <div class="activity">
+        <div class="ico sel"></div><div class="ico"></div><div class="ico"></div><div class="ico"></div>
+      </div>
+      <div class="sidebar">
+        <div class="side-title">ThemePaint</div>
+        <div class="side-head">DARK</div>
+<div class="side-item on"><span class="swatch" style="background:#23262e"></span><span class="swatch" style="background:#00e8c6"></span><span class="swatch" style="background:#96e072"></span><span class="swatch" style="background:#c74ded"></span><span class="side-label">Andromeda</span></div>
+<div class="side-item"><span class="swatch" style="background:#1e1e1e"></span><span class="swatch" style="background:#61afef"></span><span class="swatch" style="background:#98c379"></span><span class="swatch" style="background:#c678dd"></span><span class="side-label">Onyx One</span></div>
+<div class="side-item"><span class="swatch" style="background:#161616"></span><span class="swatch" style="background:#78a9ff"></span><span class="swatch" style="background:#42be65"></span><span class="swatch" style="background:#ff7eb6"></span><span class="side-label">Carbon</span></div>
+<div class="side-head">OCEAN</div>
+<div class="side-item"><span class="swatch" style="background:#0f111a"></span><span class="swatch" style="background:#84ffff"></span><span class="swatch" style="background:#c3e88d"></span><span class="swatch" style="background:#c792ea"></span><span class="side-label">Deep Sea</span></div>
+<div class="side-item"><span class="swatch" style="background:#0d2b2b"></span><span class="swatch" style="background:#2ee6c8"></span><span class="swatch" style="background:#7be0a0"></span><span class="swatch" style="background:#4dd0e1"></span><span class="side-label">Lagoon</span></div>
+<div class="side-head">SYNTHWAVE</div>
+<div class="side-item"><span class="swatch" style="background:#1b132a"></span><span class="swatch" style="background:#ff6ac1"></span><span class="swatch" style="background:#ff9966"></span><span class="swatch" style="background:#ffcc55"></span><span class="side-label">Outrun</span></div>
+      </div>
+      <div class="editor">
+        <div class="tabs">
+          <div class="tab active"><span class="fdot"></span>applyTheme.ts</div>
+          <div class="tab">theme.json</div>
+        </div>
+        <div class="code-area"><div class="row"><span class="ln"> 1</span><span class="code"><span class="com">// ThemePaint — 100 modern themes, one click away</span></span></div>
+<div class="row"><span class="ln"> 2</span><span class="code"><span class="kw">import</span><span class="t"> { </span><span class="var">workspace</span><span class="op">, </span><span class="var">window</span><span class="t"> } </span><span class="kw">from</span><span class="t"> </span><span class="str">"vscode"</span><span class="op">;</span></span></div>
+<div class="row"><span class="ln"> 3</span><span class="code">&nbsp;</span></div>
+<div class="row"><span class="ln"> 4</span><span class="code"><span class="kw">interface</span><span class="t"> </span><span class="ty">ThemeOptions</span><span class="t"> {</span></span></div>
+<div class="row"><span class="ln"> 5</span><span class="code"><span class="t">  </span><span class="prop">category</span><span class="op">:</span><span class="t"> </span><span class="ty">string</span><span class="op">;</span></span></div>
+<div class="row"><span class="ln"> 6</span><span class="code"><span class="t">  </span><span class="prop">contrast</span><span class="op">:</span><span class="t"> </span><span class="ty">number</span><span class="op">;</span></span></div>
+<div class="row"><span class="ln"> 7</span><span class="code"><span class="t">  </span><span class="prop">italics</span><span class="op">:</span><span class="t"> </span><span class="ty">boolean</span><span class="op">;</span></span></div>
+<div class="row"><span class="ln"> 8</span><span class="code"><span class="t">}</span></span></div>
+<div class="row"><span class="ln"> 9</span><span class="code">&nbsp;</span></div>
+<div class="row active"><span class="ln">10</span><span class="code"><span class="kw">export</span><span class="t"> </span><span class="kw">function</span><span class="t"> </span><span class="fn">applyTheme</span><span class="op">(</span><span class="param">name</span><span class="op">:</span><span class="t"> </span><span class="ty">string</span><span class="op">,</span><span class="t"> </span><span class="param">opts</span><span class="t"> = </span><span class="var">defaults</span><span class="op">) {</span></span></div>
+<div class="row"><span class="ln">11</span><span class="code"><span class="t">  </span><span class="kw">const</span><span class="t"> </span><span class="var">config</span><span class="t"> = </span><span class="var">workspace</span><span class="op">.</span><span class="fn">getConfiguration</span><span class="op">(</span><span class="str">"workbench"</span><span class="op">);</span></span></div>
+<div class="row"><span class="ln">12</span><span class="code"><span class="t">  </span><span class="kw">const</span><span class="t"> </span><span class="var">previous</span><span class="t"> = </span><span class="var">config</span><span class="op">.</span><span class="fn">get</span><span class="op">(</span><span class="str">"colorTheme"</span><span class="op">);</span></span></div>
+<div class="row"><span class="ln">13</span><span class="code">&nbsp;</span></div>
+<div class="row"><span class="ln">14</span><span class="code"><span class="t">  </span><span class="kw">return</span><span class="t"> </span><span class="var">config</span><span class="op">.</span><span class="fn">update</span><span class="op">(</span><span class="str">"colorTheme"</span><span class="op">, </span><span class="param">name</span><span class="op">, </span><span class="num">true</span><span class="op">).</span><span class="fn">then</span><span class="op">(() =&gt; {</span></span></div>
+<div class="row"><span class="ln">15</span><span class="code"><span class="t">    </span><span class="var">window</span><span class="op">.</span><span class="fn">showInformationMessage</span><span class="op">(</span><span class="str">`Applied ${</span><span class="param">name</span><span class="str">} ✨`</span><span class="op">);</span></span></div>
+<div class="row"><span class="ln">16</span><span class="code"><span class="t">    </span><span class="kw">return</span><span class="t"> { </span><span class="prop">name</span><span class="op">,</span><span class="t"> </span><span class="prop">previous</span><span class="op">,</span><span class="t"> </span><span class="prop">count</span><span class="op">:</span><span class="t"> </span><span class="num">100</span><span class="t"> };</span></span></div>
+<div class="row"><span class="ln">17</span><span class="code"><span class="t">  </span><span class="op">});</span></span></div>
+<div class="row"><span class="ln">18</span><span class="code"><span class="t">}</span></span></div></div>
+      </div>
+    </div>
+    <div class="statusbar">
+      <span class="accent">Dark: Andromeda</span>
+      <span>TypeScript</span><span>UTF-8</span><span>Ln 10, Col 24</span><span>Spaces: 2</span>
+    </div>
+  </div>
+  </body></html>
